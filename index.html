@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Page</title>
+    <style>
+        /* Step 1: Background is black */
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            transition: background 0.5s ease-in-out;
+        }
+
+        #content-area {
+            display: none; /* Hidden until name prompt is cleared */
+            background: rgba(0, 0, 0, 0.6); /* Slight overlay for readability */
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            margin: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover { transform: scale(1.1); }
+
+        .good-btn { background-color: #ffd700; color: black; } /* Gold color to match image */
+        .bad-btn { background-color: #ff4d4d; color: white; }
+
+        h1 { font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body id="main-body">
+
+    <div id="content-area">
+        <div id="question-section">
+            <h1>How was your day?</h1>
+            <button class="btn good-btn" onclick="handleGood()">Good</button>
+            <button class="btn bad-btn" onclick="handleBad()">Bad</button>
+        </div>
+        <div id="final-section" style="display: none;">
+            <h1>Bhag lauda</h1>
+        </div>
+    </div>
+
+    <script>
+        // Step 1: Pop up asking for name
+        window.onload = function() {
+            let name = prompt("Please enter your name:");
+            // Even if name is empty, it proceeds to the blank page with options
+            document.getElementById('content-area').style.display = 'block';
+        };
+
+        // Step 2: Handle "Bad" click
+        function handleBad() {
+            alert("Bhag lauda");
+            handleGood(); // Redirects to the "Good" outcome
+        }
+
+        // Step 3: Handle "Good" click / Final Result
+        function handleGood() {
+            document.getElementById('question-section').style.display = 'none';
+            document.getElementById('final-section').style.display = 'block';
+            
+            // Setting the uploaded image as background
+            const body = document.getElementById('main-body');
+            body.style.backgroundImage = "url('image_afc988.png')"; 
+            body.style.backgroundSize = "contain"; // "contain" works best for that "J" shape
+            body.style.backgroundRepeat = "no-repeat";
+            body.style.backgroundPosition = "center";
+        }
+    </script>
+</body>
+</html>
